@@ -8,18 +8,15 @@ import { addProduct } from "../../actions/addProduct.actions";
 
 export default function Products({ products }: { products: Product[] }) {
   //Here we will destruct the prop {products:PRODUCTS}, {products} with this we will extract it's value which is PRODUCTS and then add type annotation on this extracted value, that it is an array of Products
+  const { isLoaded, user } = useUser();
+  const isAdmin = user?.organizationMemberships[0]?.roleName === "Admin";
+  console.log(isAdmin);
+
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   if (!products || products.length === 0) {
     return <p className="text-zinc-500 text-center">No products found.</p>;
   }
-
-  const {isLoaded} = useUser()
-
-  const isAdmin =
-    useUser().user?.organizationMemberships[0]?.roleName == "Admin";
-  console.log(isAdmin);
-
-  const [cart, setCart] = useState<CartItem[]>([]);
 
   const addToCart = async (name: string, price: number) => {
     setCart((prevCart) => {
@@ -43,8 +40,8 @@ export default function Products({ products }: { products: Product[] }) {
     try {
       const checkOutUrl: string = await getCheckOutUrl(cart, "payment");
 
-      window.location.href = checkOutUrl;
-    } catch (e) {
+      window.location.assign(checkOutUrl);
+    } catch {
       console.log("Error while fetching checkout page..");
     }
   };

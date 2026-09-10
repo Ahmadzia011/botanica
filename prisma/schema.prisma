@@ -34,3 +34,10 @@ model Purchase {
   userId String
   timeStamp DateTime
 }
+
+model FormData {
+  id Int   @id @default(autoincrement())
+  name String
+  email String
+  note String
+}

@@ -7,7 +7,7 @@ try {
         console.log(customerId)
         throw new Error('Customer Id is null or undefined')
     }
-   const results =  await prisma.purchase.create({
+   await prisma.purchase.create({
         data : {
             customer:{
                 connect:{

@@ -1,7 +1,6 @@
 "use client";
 
 import { getCheckOutUrl } from "../actions/fetchCheckOut.actions";
-import { useState } from "react";
 import { PLANS, CartItem } from "@/src/constants/products.constants";
 
 export default function Plans() {
@@ -14,9 +13,9 @@ export default function Plans() {
     if (!checkOutUrl) {
       throw new Error("No checkout URL was returned from the server.");
     }
-      window.location.href = checkOutUrl;
+      window.location.assign(checkOutUrl);
       
-    } catch (e) {
+    } catch {
       console.error("Error while fetching checkout page..");
     }
   };

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs'
+import LenisScroll from "../lib/lenisScroll";
 
 const clerkAppearance = {
   elements: {
@@ -9,8 +10,8 @@ const clerkAppearance = {
   }
 }
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
@@ -20,17 +21,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Scrapcher",
-  description: "Your own AI assistant "
+  title: "Botanica | Whole-plant rituals",
+  description: "Considered herbal infusions for slower, more grounded days."
 };
 
 export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${manrope.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <LenisScroll/>
         <ClerkProvider appearance={clerkAppearance}>
           {children}
         </ClerkProvider>

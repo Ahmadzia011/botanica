@@ -49,10 +49,9 @@ export async function getCheckOutUrl(
       throw new Error("Stripe session URL is missing");
     }
     return session.url;
-  } catch (e: any) {
-    console.log(e.message);
-    throw new Error(
-      e.message || "An unexpected error occurred during checkout.",
-    );
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : "An unexpected error occurred during checkout.";
+    console.log(message);
+    throw new Error(message);
   }
 }

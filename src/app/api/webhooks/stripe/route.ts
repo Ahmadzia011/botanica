@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
 
   try {
     stripe = getStripe();
-  } catch (e) {
+  } catch {
     throw new Error("Failed to load stripe key");
   }
 
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       req.headers.get("stripe-signature")!, //signature that comes from stripe to match with our for verification
       process.env.STRIPE_WEBHOOK_SECRET!, // our stored signature for comparing
     );
-  } catch (e) {
+  } catch {
     return new NextResponse("Failed to verify the webhook", {
       status: 400,
     });
@@ -37,7 +37,8 @@ export async function POST(req: NextRequest) {
     return new NextResponse("Successfully recieved the event", {
       status: 200,
     });
-  } catch (e: any) {
-    return new NextResponse(`Webhook Error: ${e.message}`, { status: 400 });
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : "Unable to process the webhook.";
+    return new NextResponse(`Webhook Error: ${message}`, { status: 400 });
   }
 }

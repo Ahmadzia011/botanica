@@ -1,10 +1,10 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 // middleware checks if the user is allowed to get this path data or not
-const isPublic = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)', '/api/webhooks(.*)'])
+const isPublic = createRouteMatcher([])
 
  export default clerkMiddleware(async (auth, req)=>{
-   if(!isPublic(req)) await auth.protect();
+   if(isPublic(req)) await auth.protect();
  })
 
 

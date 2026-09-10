@@ -8,22 +8,21 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: 1,
-    name: "Premium Mechanical Keyboard",
-    price: 129,
-    desc: "Hot-swappable tactile switches with RGB backlighting.",
+    name: "Still Lemon Balm",
+    price: 28,
+    desc: "Whole-leaf lemon balm and tulsi for a softer evening ritual.",
   },
   {
     id: 2,
-    name: "Ergonomic Wireless Mouse",
-    price: 89,
-    desc:
-      "High-precision tracking with an ultra-comfortable thumb rest.",
+    name: "Daybreak Chamomile",
+    price: 26,
+    desc: "A gentle floral infusion for quiet, unhurried mornings.",
   },
   {
     id: 3,
-    name: "Ultra-Wide Monitor Lightbar",
-    price: 49,
-    desc: "Asymmetric forward projection prevents screen glare.",
+    name: "Ground Rosemary",
+    price: 30,
+    desc: "A fragrant rosemary botanical concentrate for clear moments.",
   },
 ];
 
@@ -33,20 +32,20 @@ export const PLANS: Product[] = [
     id: 1,
     name: "Basic",
     price: 50,
-    desc: "Hot-swappable tactile switches with RGB backlighting.",
+    desc: "A monthly delivery of whole-plant blends, selected with the season.",
   },
   {
     id: 2,
     name: "Pro",
     price: 150,
     desc:
-      "High-precision tracking with an ultra-comfortable thumb rest.",
+      "A curated rotation of fresh seasonal botanicals delivered each month.",
   },
   {
     id: 3,
     name: "Max",
     price: 250,
-    desc: "Asymmetric forward projection prevents screen glare.",
+    desc: "Our fullest seasonal ritual, including limited-run pantry editions.",
   },
 ];
 
@@ -56,5 +55,5 @@ export interface CartItem {
   quantity: number;
 }
 
-export const SUCCESS_PAGE = "http://localhost:3000/"
+export const SUCCESS_PAGE = "http://localhost:3000/success"
 export const CANCELLATION_PAGE = "http://localhost:3000/cancel"

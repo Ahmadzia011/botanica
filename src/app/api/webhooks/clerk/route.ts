@@ -8,13 +8,8 @@ export async function POST(req: NextRequest) {
 
   try {
     event = await verifyWebhook(req);
-  } catch (e: any) {
-    return (
-      new NextResponse("Failed to verify the coming request"),
-      {
-        status: 403,
-      }
-    );
+  } catch {
+    return new NextResponse("Failed to verify the incoming request", { status: 403 });
   }
   console.log(event);
 
@@ -30,7 +25,6 @@ export async function POST(req: NextRequest) {
           last_name: last_name ?? '',
           email_address,
         });
-        addUserToStripe(id, email_address) //to add the user in stripe as well
         break;
       }
 
@@ -55,9 +49,10 @@ export async function POST(req: NextRequest) {
     return new NextResponse("Successfully recieved the notification", {
       status: 200,
     });
-  } catch (e:any) {
-    console.log(e.message)
-    return new NextResponse(e.message, {
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : "Unable to process the webhook.";
+    console.log(message)
+    return new NextResponse(message, {
       status: 400,
     });
   }

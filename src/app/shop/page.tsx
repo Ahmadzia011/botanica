@@ -1,18 +1,12 @@
-import NavBar from "@/src/component/Navbar";
-import Products from "./products/page";
-import { prisma } from "@/src/lib/prisma";
+import NavBar from "@/src/components/Navbar";
+import { ShopBody } from "./body";
 
-export default async function Shop() {
-
-  const fetchedProducts = await prisma.product.findMany();
-  console.log(fetchedProducts)
-
+export default function Shop() {
   return (
-    <div>
-      <NavBar />
-      {/* Prop would be sent as this -> props = {products:PRODUCTS} */}
-      <Products products={fetchedProducts}/> 
-    </div>
+    <>
+    <NavBar/>
+    <ShopBody/>
+    </>
   );
 }
 
