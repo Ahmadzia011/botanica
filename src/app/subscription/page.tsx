@@ -55,7 +55,7 @@ export default function Plans() {
                   </h3>
 
                   <p className="text-sm text-zinc-500 leading-relaxed mb-6 line-clamp-2">
-                    {product.description}
+                    {product.desc}
                   </p>
                 </div>
 
